@@ -1,0 +1,2 @@
+
+var pricesFrom = "Prices from";

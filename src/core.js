@@ -22,11 +22,11 @@ app = (function(Global, document, undefined) {
 			unregisterSpecificModule(module);
 		}
 	}
-	
+
 	function unregisterSpecificModule(moduleName) {	
 		if (modules[moduleName]) {
 			stopSpecificModule(moduleName);
-			
+
 			delete modules[moduleName];
 		}
 	}
@@ -39,7 +39,7 @@ app = (function(Global, document, undefined) {
 		startSpecificModule(moduleName);
 	}
 	
-	function startAllModules() {		
+	function startAllModules() {
 		for (module in modules) {
 			startSpecificModule(module);
 		}
@@ -48,9 +48,11 @@ app = (function(Global, document, undefined) {
 	function startSpecificModule(moduleName) {
 		if (!running[moduleName] && modules[moduleName]) {			
 			running[moduleName] = modules[moduleName];
+			
+			running[moduleName] = modules[moduleName].call({}, sandbox);
 
-			if (modules[moduleName].start) {
-				running[moduleName].start.call({}, sandbox);
+			if (running[moduleName].start) {
+				running[moduleName].start();
 			}
 		}
 	}
@@ -72,30 +74,35 @@ app = (function(Global, document, undefined) {
 	function stopSpecificModule(moduleName) {
 		if (running[moduleName]) {
 			if (running[moduleName].stop) {
-				running[moduleName].stop.call({}, sandbox);
+				running[moduleName].stop();
 			}
 			
 			delete running[moduleName];
 		}
 	}
 	
-	function getSpecificModule(moduleName) {
-		return modules[moduleName];
+	function getSpecificModule(moduleName) {		
+		return { 
+			module: modules[moduleName],
+			instance: running[moduleName]
+		};
 	}
 	
-	function extendSandbox(scope) {
-		for (feature in scope) {
-			if (!sandbox[feature]) { 
-				sandbox[feature] = scope[feature];
-			}
+	function extendSandbox(feature, extensions) {
+		if (sandbox[feature]) {
+			throw 'Sandbox extension already defined';
+			return;
 		}
+		
+		sandbox[feature] = extensions;
 	}
 	
 	var Application = function() {};
-	
+	/*
 	function createNewApplication() {
 		return new Application();
 	}
+	*/
 
 	// exports
 

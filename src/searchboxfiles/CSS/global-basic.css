@@ -1,0 +1,28 @@
+body { background:#fff; color:#222; font-size:12px; font-family:Arial, sans-serif; }
+
+/* Generic text */
+	/* Headers */
+		h1 { font-size:32px; }
+		h2 { font-size:22px; }
+		h3 { font-size:18px; }
+		h4 { font-size:16px; }
+		h5 { font-size:14px; }
+		h6 { font-size:12px; }
+		h1, h2, h3, h4, h5, h6, li, p, dd, dt { line-height:1.5em; }
+	/* Links */
+		a { color:#00f; text-decoration:underline; }
+		a:hover { text-decoration:none; }
+
+/* Positioning */
+	/* Text alignment */
+	.txtlft { text-align:left; }
+	.txtcen { text-align:center; }
+	.txtrgt { text-align:right; }
+	/* Floats */
+	.fltlft { float:left; }
+	.fltrgt { float:right; }
+	.cl { clear:both; height:0px; font-size:0px; display:block; overflow:hidden; visibility:hidden;  }
+	/* Colours */
+	.red { color:#f00; }
+	.faint { color:#8A8A8C; }
+	

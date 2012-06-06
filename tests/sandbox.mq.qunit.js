@@ -4,6 +4,7 @@ require([
 
 // support libraries
 '../lib/qunit/qunit',
+'../lib/phantomjs-reporter.js',
 '../lib/hamcrest/jshamcrest',
 
 // system under test

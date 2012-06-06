@@ -1,9 +1,10 @@
-(function(window, laterooms, undefined) {
+(function(Global, document, undefined) {
 
 require([
 
 // support libraries
 '../lib/qunit/qunit',
+'../lib/phantomjs-reporter.js',
 '../lib/hamcrest/jshamcrest',
 
 // system under test
@@ -38,4 +39,4 @@ test('When the SearchBox Module is started', function() {
 
 });
 
-})(this, this.laterooms || {});
+})(this, this.document || {});

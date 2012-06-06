@@ -1,6 +1,6 @@
 {
   "author": "Matt Smith <matt.smith@laterooms.com>",
-  "name": "JavaScript-Framework",
+  "name": "Bellhop",
   "description": "Implementation of the Scalable JavaScript Application Architecture Pattern for TLRG",
   "version": "0.0.1",
   "homepage": "http://www.laterooms.com",
@@ -12,6 +12,10 @@
     "node": "0.4.0"
   },
   "dependencies": {
+		"glob": "3.x.x",
+		"gzip": "3.x.x",
+		"uglify": "3.x.x",
+		"wrench": "3.x.x"
   },
   "devDependencies": {
   },

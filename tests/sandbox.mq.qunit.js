@@ -1,21 +1,5 @@
 (function(Global, document, undefined) {
 
-require([
-
-// support libraries
-'../lib/qunit/qunit',
-'../lib/phantomjs-reporter.js',
-'../lib/hamcrest/jshamcrest',
-
-// system under test
-'../src/core',
-'../src/sandbox.mq.js'
-
-], function() {
-
-// setup JS Hamcrest
-JsHamcrest.Integration.QUnit();
-
 // define modules and tests
 var app = Global.app;
 
@@ -126,8 +110,6 @@ test('when a [test] event is fired', function() {
 	var paramValue = app.module('mq subscriber').instance.getPassedValue2();
 
 	assertThat(paramValue, is( equalTo( 'value not passed' ) ), 'then the active listener for the event [second test] will not receive the event')
-});
-
 });
 
 })(this, this.document || {});

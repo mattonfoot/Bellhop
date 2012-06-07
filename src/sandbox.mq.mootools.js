@@ -3,7 +3,7 @@
 var mq = {};
 var uniqs = {};
 
-app.extend('mq', {
+var extensions = {
 
 	publish: function(ev, params) {
 		if (mq[ev] && !uniqs[ev]) {
@@ -39,6 +39,12 @@ app.extend('mq', {
 		mq[ev].push(handler);
 	}
 
+}
+
+app.extend('mq', );
+
+window.addEvent('domready', function() {
+	Global.app.mq.once('domready');
 });
 
 })(this);

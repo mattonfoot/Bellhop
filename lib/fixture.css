@@ -1,0 +1,6 @@
+
+.wrapper { width:960px; margin:0 auto; }
+
+.visual-tests { margin:0 0 10px; overflow:hidden; zoom:1; }
+	.visual-column { float:left; width:320px; overflow:auto; text-align:center; }
+	.visual-title { margin:0 0 .5em; padding:.5em 0; color:#fff; background-color:#2b81af; font:bold small Sans-Serif; text-shadow:rgba(0, 0, 0, 0.5) 2px 2px 1px; }

@@ -8,6 +8,7 @@ var jsp = require("uglify-js").parser,
 var files = [
 		'src/core.js'
 	, 	'src/sandbox.mq.js'
+	, 	'src/sandbox.mq.domready.mootools.js'
 	, 	'src/sandbox.ajax.js'
 	, 	'src/sandbox.dom.mootools.js'
 	, 	'src/sandbox.domevents.mootools.js'

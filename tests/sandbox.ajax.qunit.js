@@ -1,15 +1,15 @@
 
-var XMLHttpRequest = function() { };
+var XMLHttpRequestFake = function() { };
 
-XMLHttpRequest.prototype = {
+XMLHttpRequestFake.prototype = {
 	open: function(method, url, async) {
-		XMLHttpRequest.prototype.url = url;
-		XMLHttpRequest.prototype.method = method;
+		XMLHttpRequestFake.prototype.url = url;
+		XMLHttpRequestFake.prototype.method = method;
 
 	},
 
 	send: function(postData) {
-		XMLHttpRequest.prototype.postData = postData;
+		XMLHttpRequestFake.prototype.postData = postData;
 
 		this.readyState = 1;
 		this.onreadystatechange();
@@ -22,10 +22,12 @@ XMLHttpRequest.prototype = {
 	},
 
 	setRequestHeader: function(key, value) {
-		XMLHttpRequest.prototype.requestHeaders[key] = value;
+		XMLHttpRequestFake.prototype.requestHeaders[key] = value;
 	},
 
 	onreadystatechange: function() { },
+
+	Original: XMLHttpRequest,
 
 	readyState: 0,
 	status: 200,
@@ -36,24 +38,9 @@ XMLHttpRequest.prototype = {
 	requestHeaders: {}
 };
 
+XMLHttpRequest = XMLHttpRequestFake;
+
 (function(Global, document, undefined) {
-
-require([
-
-// support libraries
-'../lib/qunit/qunit',
-'../lib/phantomjs-reporter.js',
-'../lib/hamcrest/jshamcrest',
-'./core.fixturesupport',
-
-// system under test
-'../src/core',
-'../src/sandbox.ajax.js'
-
-], function() {
-
-// setup JS Hamcrest
-JsHamcrest.Integration.QUnit();
 
 // define modules and tests
 var app = Global.app;
@@ -152,7 +139,5 @@ test('When it is called with a url and a Callback method', function() {
 
 // asset.javascript
 // then it should load a javascript file and fire the load event
-
-});
 
 })(this, this.document || {});

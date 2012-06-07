@@ -1,22 +1,5 @@
 (function(Global, document, undefined) {
 
-require([
-
-// support libraries
-'../lib/qunit/qunit',
-'../lib/phantomjs-reporter.js',
-'../lib/hamcrest/jshamcrest',
-
-// system under test
-'../lib/mootools/mootools-1.2.3-min.js',
-'../dist/app.min.js',
-'../src/modules.searchbox.js'
-
-], function() {
-
-// setup JS Hamcrest
-JsHamcrest.Integration.QUnit();
-
 // define modules and tests
 var app = Global.app;
 
@@ -35,8 +18,6 @@ test('When the SearchBox Module is started', function() {
 	var searchBoxTitle = fixtureHTML.indexOf('Search Hotels');
 
 	assertThat(searchBoxTitle, is( greaterThan( -1 ) ), 'Search Box Title is displayed Correctly');
-});
-
 });
 
 })(this, this.document || {});

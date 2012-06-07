@@ -51,6 +51,10 @@ app = (function(Global, document, undefined) {
 
 			running[moduleName] = running[moduleName].call({}, sandbox) || modules[moduleName];
 
+			if (running[moduleName].domready && sandbox.mq) {
+				sandbox.mq.subscribe('domready', running[moduleName].domready);
+			}
+
 			if (running[moduleName].start) {
 				running[moduleName].start();
 			}

@@ -1,22 +1,5 @@
 (function(Global, document, undefined) {
 
-require([
-
-// support libraries
-'../lib/qunit/qunit',
-'../lib/phantomjs-reporter.js',
-'../lib/hamcrest/jshamcrest',
-
-// system under test
-'../lib/mootools/mootools-1.2.3-min.js',
-'../src/core',
-'../src/sandbox.dom.mootools.js'
-
-], function() {
-
-// setup JS Hamcrest
-JsHamcrest.Integration.QUnit();
-
 // define modules and tests
 var app = Global.app;
 
@@ -262,8 +245,6 @@ test("when it is called with a attribute value pair on an element with the prope
 
 	assertThat(this.target.title, is( 'test title' ),  'then it should overwrite the correct attribute and value');
 	assertThat(this.target, is( equalTo( testEl ) ),  'and it should return the target element');
-});
-
 });
 
 })(this, this.document || {});

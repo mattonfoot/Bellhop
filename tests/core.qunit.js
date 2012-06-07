@@ -1,22 +1,6 @@
 
 (function(Global, document, undefined) {
 
-require([
-
-// support libraries
-'../lib/qunit/qunit',
-'../lib/phantomjs-reporter.js',
-'../lib/hamcrest/jshamcrest',
-'./core.fixturesupport',
-
-// system under test
-'../src/core'
-
-], function() {
-
-// setup JS Hamcrest
-JsHamcrest.Integration.QUnit();
-
 module('Given a framework');
 
 test('When it has the API interrogated', function() {
@@ -394,8 +378,6 @@ test('When it is has the first modules name passed to [start]', function() {
 	assertThat( instance.sandbox.secondSandboxEnvironment.otherProperty, is( equalTo( anotherSandboxEnvironment.otherProperty ) ), 'Then it will have entended the sandbox twice');
 	assertThat( instance.sandbox.secondSandboxEnvironment.moduleName, is( equalTo( anotherSandboxEnvironment.moduleName ) ), 'And it will have added a property with the same name as a previous into a new namespace');
 	assertThat( instance.sandbox.firstSandboxEnvironment.moduleName, is( equalTo( basicSandboxEnvironment.moduleName ) ), 'And it will not have overriden the first sandbox property in the first namespace');
-});
-
 });
 
 })(this, this.document || {});

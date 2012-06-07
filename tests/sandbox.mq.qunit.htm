@@ -18,7 +18,18 @@
 	<!-- Original HTML taken from web page to facilitate JS -->
 	<div id="qunit-fixture"></div>
 
+	<!-- qunit and hamcrest -->
+	<script type="text/javascript" src="../lib/qunit/qunit.js"></script>
+	<script type="text/javascript" src="../lib/hamcrest/jshamcrest.js"></script>
+	<script type="text/javascript">
+		JsHamcrest.Integration.QUnit();
+	</script>
+
+	<!-- include source files here... -->
+	<script type="text/javascript" src="../src/core.js"></script>
+	<script type="text/javascript" src="../src/sandbox.mq.js"></script>
+
 	<!-- include test files here... -->
-	<script data-main="./sandbox.mq.qunit" src="../lib/require/require.js"></script>
+	<script type="text/javascript" src="./sandbox.mq.qunit.js"></script>
 </body>
 </html>

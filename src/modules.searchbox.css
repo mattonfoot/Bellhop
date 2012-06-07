@@ -1,0 +1,51 @@
+
+/*  AUTO COMPLETE  */
+#suggestout { position:absolute; z-index:1000; }
+	#suggest { position:relative; width:220px; padding:3px; border:1px solid #0a0545; background:#fff; filter:alpha(opacity=90); opacity:.9; display:none; }
+	#suggest div { width:auto !important; width:100%; position:relative; z-index:100; cursor:pointer; padding:1px 1px 1px 3px; background-position:3px 2px; background-repeat:no-repeat; color:#0a0545; }
+	#suggest div.hover { color:#fff; background-color:#0a0545; }
+	#suggest span, #suggest b { font-weight:normal; font-size:11px; }
+	#suggest b { float:right; font-weight:bold; padding-left:5px; }
+
+/*  Calendar  */
+
+.datepicker-icon { border:0; cursor:pointer; float:right; height:19px; width:21px; background:url(http://images.laterooms.com/order/shared/calendar/cal-icon.png) no-repeat; }
+
+div.calendar { background:#fff; border:1px solid #411485; text-align:center; width:150px; }
+div.calendar div { overflow:hidden; position:relative; width:150px; }
+
+div.calendar caption { background:#411485; color:#fff; font:normal 12px/20px Arial, Helvetica, sans-serif; text-align:center; width:100%; }
+div.calendar caption a { cursor:pointer; text-indent:-100px; display:block; width:5px; height:12px; overflow:hidden; position:absolute; top:3px; background:url(http://images.laterooms.com/order/shared/calendar/cal-arrows.png) no-repeat 0px 2px; }
+div.calendar caption .prev { left:5px; }
+div.calendar caption .next { right:5px; background-position:right 2px; }
+
+div.calendar caption span { position:relative; text-align:center; }
+div.calendar caption .month { padding-right:8px; }
+div.calendar caption .month:after { content:','; }
+
+div.calendar table { background:#fff; border:0; border-collapse:collapse; border-spacing:0; cursor:default; margin:0 auto; overflow:hidden; width:150px; }
+div.calendar td, div.calendar th { border:0; color:#222; font:normal 12px Arial, Helvetica, sans-serif; height:21px; text-align:center; width:21px; border-right:1px solid #ccc; }
+div.calendar td { color:#aaa; font-size:11px; font-weight:bold; border-top:1px solid #ccc; }
+div.calendar .invalid { color:#aaa; }
+div.calendar .valid { color:#411485; cursor:pointer; }
+
+div.calendar .inactive { color:#222; }
+div.calendar .active { color:#fff; background:#411485; }
+div.calendar .hover { color:#411485; background:#ffc; cursor:pointer; }
+
+
+.search { width:182px; margin:0 auto; padding:0; font:bold 12px sans-serif; text-align:left; color:#252525; background:#feb415 url(http://images.laterooms.com/dizzy/betasearch/4/searchbg.gif) repeat-x left top; }
+	.search .searchtitle { margin:5px 10px 0; height:34px; text-indent:-999em; background:url(http://images.laterooms.com/dizzy/en/layout/search-title.png) no-repeat 0px 8px; }
+	.search fieldset { display:block; margin:0; padding:0 10px; border:0; }
+		.search .desc { display:block; margin:0 0 10px; padding:0; }
+		.search input, .search select, .search option, .search textarea { margin:4px 0 0; font:12px sans-serif; line-height:16px; }
+		.search input {	margin-top:2px; height:16px; width:156px; }
+		.search select { width:160px; }
+			.search .datepicker { width:130px; }
+			.search .datepicker-icon { margin-top:4px; margin-right:8px !important; margin-right:3px; }
+
+	.search .buttons { padding:11px 0 14px; text-align:right; z-indez:9999; }
+	.search .buttons input { width:90px; height:30px; border:0; text-indent:-999em; background:url(http://images.laterooms.com/dizzy/en/layout/search-btn.png) no-repeat left top; }
+
+	.search .top, .search .bot { height:3px; padding:0; overflow:hidden; background:url(http://images.laterooms.com/dizzy/betasearch/4/searchtopbotbg.gif) no-repeat left top; }
+	.search .bot { background-position:0px -3px; }

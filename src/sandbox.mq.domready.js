@@ -10,7 +10,7 @@
                 clearInterval(scrollIntervalId);
             }
 
-			Global.app.mq.once('domready');
+			Global.app.sandbox.mq.once('domready');
         }
     }
 

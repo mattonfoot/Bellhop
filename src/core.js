@@ -110,6 +110,7 @@ app = (function(Global, document, undefined) {
 	// exports
 
 	Application.prototype = {
+		sandbox: sandbox,
 		register: registerModule,
 		unregister: unregisterModule,
 		module: getSpecificModule,

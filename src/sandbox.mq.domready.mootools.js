@@ -1,8 +1,8 @@
 
-(function(Global) {
+(function(Global, document) {
 
-	window.addEvent('domready', function() {
-		Global.app.mq.once('domready');
-	});
+window.addEvent('domready', function() {
+	Global.app.sandbox.once('domready');
+});
 
-})(this);
+})(this, this.document);

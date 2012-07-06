@@ -1,4 +1,4 @@
-(function(window) {
+(function(Global, document) {
 
 var mq = {};
 var uniqs = {};
@@ -20,7 +20,7 @@ app.extend('mq', {
 			return;
 		}
 
-		publish(ev, params);
+		this.publish(ev, params);
 
 		uniqs[ev] = params;
 	},
@@ -41,4 +41,4 @@ app.extend('mq', {
 
 });
 
-})(this);
+})(this, this.document);

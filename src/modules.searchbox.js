@@ -1,6 +1,11 @@
 
 (function(Global, document, undefined) {
 
+// SetFormCookie
+// FormSubmit
+// ShowSearchErrorMessage
+// SearchButtonClicked
+
 Global.app.register('searchbox', function(sandbox) {
 
 	return {
@@ -8,19 +13,23 @@ Global.app.register('searchbox', function(sandbox) {
 
 			if ($("ddlNights") != null) {
 				$("ddlNights").addEvent("change", SetFormCookie);
-				if ($("ddlDate") != null)
+
+				if ($("ddlDate") != null) {
 					$("ddlDate").addEvent("change", SetFormCookie);
+				}
+
 				$("ddlRoomType").addEvent("change", SetFormCookie);
+
 				createDateDropdown();
 			}
 
 			if (Cookie.read("LateroomsProfile")
-				&& JSON.decode(Cookie.read("LateroomsProfile")).languagecode == 'EN'
-				&& JSON.decode(Cookie.read("LateroomsProfile")).countrycode == "AU") {
+					&& JSON.decode(Cookie.read("LateroomsProfile")).languagecode == 'EN'
+					&& JSON.decode(Cookie.read("LateroomsProfile")).countrycode == "AU") {
 				townpostcodeattraction = defaultAuSearchText;
 			}
 
-			searchForm = document.forms["searchbox"] || document.forms["main"];
+			var searchForm = document.forms["searchbox"] || document.forms["main"];
 			$(searchForm).addEvent("submit", FormSubmit);
 
 			if ($("search") != null) {
@@ -38,14 +47,17 @@ Global.app.register('searchbox', function(sandbox) {
 			});
 
 			SP2.replaceText();
-			 if ($('ysf1')) {
-				 highlightDates({target:$$('.nights-dd')[0]});
+			if ($('ysf1')) {
+				var nightsDD = $$('.nights-dd')[0];
+
+				 highlightDates({ target: nightsDD });
+
 				 checkAndHideSecondRows();
 				 RefreshDefaultMinStayWarnings();
-				 displayYouSaveMessages({target:$$('.nights-dd')[0]});
+				 displayYouSaveMessages({ target: nightsDD });
 				 displayDateLevelAllocation();
-				 displayRoomLevelAllocation()
-			 }
+				 displayRoomLevelAllocation();
+			}
 
 		}
 	};

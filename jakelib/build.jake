@@ -3,7 +3,7 @@ var gzip = require('gzip'),
 	wrench = require('wrench'),
 	path = require('path');
 
-var variants = ['mootools'];
+var variants = ['', 'mootools'];
 
 var files = [
 		'src/core.js'
@@ -32,39 +32,58 @@ namespace('build', function () {
 
 	desc('concatenate all src files into a single script');
 	file(output.folder +'/app.js', ['build:' + output.folder], function () {
-		var output = files.map(readSrcFile);
+		variants.forEach(function(variant) {
+			var variantExt = (variant ? '.' + variant : '');
 
-		fs.writeFileSync('dist/app.js', output.join('\n\n'));
+			var output = files.map(function(file) { return readSrcFile(file, variant); });
+
+			fs.writeFileSync('dist/app'+ variantExt +'.js', output.join('\n\n'));
+		});
+
 	});
 
 	desc('minify the concatenated files');
 	file(output.folder +'/app.min.js', ['build:'+ output.folder +'/app.js'], function () {
-		var data = fs.readFileSync('dist/app.js', 'utf8');
+		variants.forEach(function(variant) {
+			var variantExt = (variant ? '.' + variant : '');
 
-		var final_code = minifyJS(data);
+			var data = fs.readFileSync('dist/app'+ variantExt +'.js', 'utf8');
 
-		fs.writeFileSync('dist/app.min.js', final_code);
+			var final_code = minifyJS(data);
+
+			fs.writeFileSync('dist/app'+ variantExt +'.min.js', final_code);
+		});
 	});
 
 	desc('gzip the minified file');
 	file(output.folder +'/app.min.js.gz', ['build:'+ output.folder +'/app.min.js'], function () {
-		var data = fs.readFileSync(output.folder +'/app.min.js', 'utf8');
+		variants.forEach(function(variant) {
+			var variantExt = (variant ? '.' + variant : '');
 
-		gzip(data, function(err, data) {
-			if (err) {
-				throw err;
-			}
+			var data = fs.readFileSync(output.folder +'/app'+ variantExt +'.min.js', 'utf8');
 
-			fs.writeFileSync(output.folder +'/app.min.js.gz', data);
+			gzip(data, function(err, data) {
+				if (err) {
+					throw err;
+				}
 
-			complete();
+				fs.writeFileSync(output.folder +'/app'+ variantExt +'.min.js.gz', data);
+
+				complete();
+			});
 		});
 
 	}, {async: true});
 
 });
 
-function readSrcFile(file) {
+function readSrcFile(file, variant) {
+	var variantFile = file.replace('.js', '.'+ variant +'.js');
+
+	if (variant != '' && path.existsSync(variantFile)) {
+		return fs.readFileSync(variantFile);
+	}
+
 	if (path.existsSync(file)) {
 		return fs.readFileSync(file);
 	}

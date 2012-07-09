@@ -1,45 +1,64 @@
 var path = require('path'),
-	wrench = require('wrench');
+	wrench = require('wrench'),
+	fs = require('fs');
 
 namespace('coverage', function () {
 
 	desc('remove the existing Temporary Output Folder');
 	task('prepare', function() {
-		if (path.existsSync('instrumented')) {
-			wrench.rmdirSyncRecursive('instrumented');
+		if (path.existsSync('coverage')) {
+			wrench.rmdirSyncRecursive('coverage');
 		}
 	});
 
 	task('js', ['coverage:prepare'], function() {
-		// generate annotated files
-		var jscoverage_task = require('child_process').execFile('./lib/JSCoverage/jscoverage.exe', ['src', 'instrumented']);
-
-		var g = new require("glob").Glob('./tests/*.qunit.htm');
-
-		/*
 		var params = [];
 
-		params.push('./lib/coverage-runner.js'); // script
-		params.push('./Coverage'); // output
+		params.push('./lib/phantomjs-coverage.js'); // script
+		params.push('./TestResults'); // output
 
-		g.on('end', function(files) {
-			files.forEach(function(file) {
-				params.push( file );
-			});
+		fs.mkdir('coverage');
 
-			phantomTestRunnerTask(params);
+		// generate annotated files
+		var jscoverage_task = require('child_process')
+				.execFile('./lib/JSCoverage/jscoverage.exe', ['src', 'instrumented']);
+
+		jscoverage_task.stderr.on('data', function (data) {
+			fail( data );
 		});
 
-		, { async: true }
-		*/
-	});
+		jscoverage_task.stdout.on('data', function (data) {
+			console.log( data );
+		});
+
+		jscoverage_task.on('exit', function (code, signal) {
+			wrench.copyDirSyncRecursive('instrumented', 'coverage/src');
+			wrench.copyDirSyncRecursive('lib', 'coverage/lib');
+			wrench.copyDirSyncRecursive('tests', 'coverage/tests');
+
+			wrench.rmdirSyncRecursive('instrumented');
+
+			var g = new require("glob").Glob('./coverage/tests/*.qunit.htm');
+
+			g.on('end', function(files) {
+				files.forEach(function(file) {
+					params.push( file );
+				});
+
+				phantomTask(params);
+
+			});
+		});
+
+	}, { async: true });
 
 });
 
-function phantomTestRunnerTask(params) {
+function phantomTask(params) {
 	var command = './lib/PhantomJS/phantomjs.exe';
 
-	var phantom_task = require('child_process').execFile(command, params);
+	var phantom_task = require('child_process')
+			.execFile(command, params);
 
 	phantom_task.stderr.on('data', function (data) {
 		fail( data );
@@ -57,5 +76,4 @@ function phantomTestRunnerTask(params) {
 
 		fail('PhantomTask exited with code ' + code);
 	});
-
 }

@@ -3,14 +3,6 @@ var path = require('path'),
 
 namespace('test', function () {
 
-	/*
-	phantomTask({
-		script: './lib/phantomjs-runner.js',
-		output: './TestResults',
-		inputs: './*-/*.{test,spec}.htm',
-	});
-	*/
-
 	desc('remove the existing Test Output Folder');
 	task('prepare', function() {
 		if (path.existsSync('TestResults')) {
@@ -22,19 +14,27 @@ namespace('test', function () {
 	directory('TestResults', ['test:prepare']);
 
 	task('js', ['test:TestResults'], function() {
-		var params = [];
-		var g = new require("glob").Glob('./tests/*.qunit.htm');
+		RunTests('./tests/*.qunit.htm');
+	}, { async: true });
 
-		g.on('end', function(files) {
-			files.forEach(function(file) {
-				params.push( file );
-			});
-
-			phantomTestRunnerTask(params);
-		});
+	task('js.min', ['test:TestResults'], function() {
+		RunTests('./tests/*.qunit.min.htm');
 	}, { async: true });
 
 });
+
+function RunTests(glob) {
+	var params = [];
+	var g = new require("glob").Glob(glob);
+
+	g.on('end', function(files) {
+		files.forEach(function(file) {
+			params.push( file );
+		});
+
+		phantomTestRunnerTask(params);
+	});
+}
 
 function phantomTestRunnerTask(params) {
 	var command = './lib/PhantomJS/phantomjs.exe';

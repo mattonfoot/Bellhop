@@ -1,0 +1,86 @@
+/* style */
+
+html, body {
+    font: normal 12px Tahoma, sans-serif;
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 20px;
+}
+
+ul.coverage li {
+    line-height: 1.4em;
+}
+
+ul.coverage span.coverage-percent {
+    font-weight: bold;
+}
+
+ul.coverage li.coverage-low span.coverage-percent {
+    color: #c12a2a;
+}
+
+ul.coverage li.coverage-medium span.coverage-percent {
+    color: #bf8412;
+}
+
+ul.coverage li.coverage-high span.coverage-percent {
+    color: #a0ad14;
+}
+
+ul.coverage li.coverage-full span.coverage-percent {
+    color: #29ad14;
+}
+
+/* coverage */
+
+table.coverage {
+    font: normal 12px "Consolas", "Courier New", monospace;
+    border-collapse: collapse;
+}
+
+table.coverage td {
+    padding: 2px;
+}
+
+table.coverage td.code {
+    white-space: pre;
+    width: 100%;
+}
+
+.miss {
+    background: #fff0f0;
+}
+
+.hit {
+    background: #e4f6e0;
+}
+
+.undef {
+    background: #fff;
+}
+
+/* keyword, type, symbol, cbracket */
+table.coverage .k {
+    font-weight: bold;
+    color: #000;
+}
+
+/* string, regexp, number */
+table.coverage .s {
+    color: #252b79;
+}
+
+/* specialchar */
+table.coverage .t {
+    color: #2e8b57;
+}
+
+/* comment */
+table.coverage .c {
+    font-style: italic;
+    color: #999;
+}

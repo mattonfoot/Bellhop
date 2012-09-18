@@ -3,7 +3,7 @@ var gzip = require('gzip'),
 	wrench = require('wrench'),
 	path = require('path');
 
-var variants = ['', 'mootools'];
+var variants = ['', 'mootools', 'jQuery'];
 
 var files = [
 		'src/core.js'
@@ -35,7 +35,9 @@ namespace('build', function () {
 		variants.forEach(function(variant) {
 			var variantExt = (variant ? '.' + variant : '');
 
-			var output = files.map(function(file) { return readSrcFile(file, variant); });
+			var output = files.map(function(file) {
+				return readSrcFile(file, variant);
+			});
 
 			fs.writeFileSync('dist/app'+ variantExt +'.js', output.join('\n\n'));
 		});

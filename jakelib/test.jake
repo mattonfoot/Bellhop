@@ -18,7 +18,8 @@ namespace('test', function () {
 	}, { async: true });
 
 	task('js.min', ['test:TestResults'], function() {
-		RunTests('./tests/*.qunit.min.htm');
+		//RunTests('./tests/*.qunit.min.htm');
+		RunTests('./tests/*.mootools.qunit.min.htm');
 	}, { async: true });
 
 });

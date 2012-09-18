@@ -173,11 +173,11 @@ module('Given a [sandbox.dom.byClass] method', {
 		app.register('getElements function', function(sandbox) {
 			return {
 				testByClassWithScope: function() {
-					return sandbox.dom.byClass('.' + targetClass, scope);
+					return sandbox.dom.byClass(targetClass, scope);
 				},
 
 				testByClass: function() {
-					return sandbox.dom.byClass('.' + targetClass);
+					return sandbox.dom.byClass(targetClass);
 				}
 			};
 		});

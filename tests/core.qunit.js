@@ -6,7 +6,7 @@ module('Given a framework');
 test('When it has the API interrogated', function() {
 	this.app = Global.app;
 
-	assertThat( this.app, hasFunction('register'), 'And it will have a module [register] method');
+	assertThat( this.app, hasFunction('register'), 'Then it will have a module [register] method');
 	assertThat( this.app, hasFunction('unregister'), 'And it will have a module [unregister] method');
 	assertThat( this.app, hasFunction('start'), 'And it will have a module [start] method');
 	assertThat( this.app, hasFunction('stop'), 'And it will have a module [stop] method');

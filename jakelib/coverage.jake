@@ -1,12 +1,11 @@
-var path = require('path'),
-	wrench = require('wrench'),
+var wrench = require('wrench'),
 	fs = require('fs');
 
 namespace('coverage', function () {
 
 	desc('remove the existing Temporary Output Folder');
 	task('prepare', function() {
-		if (path.existsSync('coverage')) {
+		if (fs.existsSync('coverage')) {
 			wrench.rmdirSyncRecursive('coverage');
 		}
 	});

@@ -2,7 +2,7 @@
 (function(Global, document) {
 
 $(function() {
-	Global.app.sandbox.once('domready');
+	Global.app.sandbox.mq.once('domready');
 });
 
 })(this, this.document);

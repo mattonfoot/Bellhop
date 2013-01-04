@@ -23,9 +23,9 @@
 	} else if (Global.attachEvent) {
 		Global.attachEvent("onload", pageLoaded);
 
-		testDiv = document.createElement('div');
+		var testDiv = document.createElement('div');
 		try {
-			isTop = Global.frameElement === null;
+			var isTop = Global.frameElement === null;
 		} catch(e) {}
 
 		//DOMContentLoaded approximation that uses a doScroll, as found by

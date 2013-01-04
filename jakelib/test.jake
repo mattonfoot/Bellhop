@@ -1,11 +1,11 @@
-var path = require('path'),
+var fs = require('fs'),
 	wrench = require('wrench');
 
 namespace('test', function () {
 
 	desc('remove the existing Test Output Folder');
 	task('prepare', function() {
-		if (path.existsSync('TestResults')) {
+		if (fs.existsSync('TestResults')) {
 			wrench.rmdirSyncRecursive('TestResults');
 		}
 	});
@@ -18,8 +18,7 @@ namespace('test', function () {
 	}, { async: true });
 
 	task('js.min', ['test:TestResults'], function() {
-		//RunTests('./tests/*.qunit.min.htm');
-		RunTests('./tests/*.mootools.qunit.min.htm');
+		RunTests('./tests/*.qunit.min.htm');
 	}, { async: true });
 
 });

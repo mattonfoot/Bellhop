@@ -1,2 +1,0 @@
-
-var pricesFrom = "Prices from";

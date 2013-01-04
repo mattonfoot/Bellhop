@@ -112,4 +112,50 @@ test('when a [test] event is fired', function() {
 	assertThat(paramValue, is( equalTo( 'value not passed' ) ), 'then the active listener for the event [second test] will not receive the event')
 });
 
+module('Given an active listener to the event [onlyFiredOnceTest]', {
+	setup: function() {
+		this.app = Global.app;
+
+		this.app.register('mq onlyFiredOnceSubscriber', function(sandbox) {
+			var self = {};
+
+			self.start = function() {
+				sandbox.mq.subscribe('onlyFiredOnceTest', function(p) {
+					self.paramValue = p;
+				});
+			};
+
+			self.testMqOnce = function(p) {
+				sandbox.mq.once('onlyFiredOnceTest', p);
+			};
+
+			self.getPassedValue = function(p) {
+				return self.paramValue;
+			};
+
+			self.paramValue = 'value not passed';
+
+			return self;
+		});
+
+		this.app.start('mq onlyFiredOnceSubscriber');
+	},
+
+	teardown: function() {
+		this.app.unregister('mq onlyFiredOnceSubscriber');
+	}
+});
+
+test('when an [onlyFiredOnceTest] event is fired twice', function() {
+	var passedValue = 'passed value';
+	var passedValue2 = 'ignored value';
+
+	app.module('mq onlyFiredOnceSubscriber').instance.testMqOnce(passedValue);
+	app.module('mq onlyFiredOnceSubscriber').instance.testMqOnce(passedValue2);
+
+	var paramValue = app.module('mq onlyFiredOnceSubscriber').instance.getPassedValue();
+
+	assertThat(paramValue, is( equalTo( 'passed value' ) ), 'then the active listener for the event [onlyFiredOnceSubscriber] will not receive the second event');
+});
+
 })(this, this.document || {});

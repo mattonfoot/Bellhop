@@ -1,7 +1,6 @@
 var gzip = require('gzip'),
 	fs = require('fs'),
-	wrench = require('wrench'),
-	path = require('path');
+	wrench = require('wrench');
 
 var variants = ['', 'mootools', 'jQuery'];
 
@@ -22,7 +21,7 @@ namespace('build', function () {
 
 	desc('Prepare working Directory by removing the existing distribution folder');
 	task('prepare', function() {
-		if (path.existsSync(output.folder)) {
+		if (fs.existsSync(output.folder)) {
 			wrench.rmdirSyncRecursive(output.folder);
 		}
 	});
@@ -82,11 +81,11 @@ namespace('build', function () {
 function readSrcFile(file, variant) {
 	var variantFile = file.replace('.js', '.'+ variant +'.js');
 
-	if (variant != '' && path.existsSync(variantFile)) {
+	if (variant != '' && fs.existsSync(variantFile)) {
 		return fs.readFileSync(variantFile);
 	}
 
-	if (path.existsSync(file)) {
+	if (fs.existsSync(file)) {
 		return fs.readFileSync(file);
 	}
 
